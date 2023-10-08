@@ -2,6 +2,16 @@
 
 import Foundation
 
-var greeting = "Hello, playground"
+final class SingletonClass {
+    static let shared = SingletonClass()
 
-//: [Next](@next)
+    private init() { }
+
+    func printSomething() {
+        print("printSomething method called from shared instance")
+    }
+}
+
+let singleton = SingletonClass.shared
+
+singleton.printSomething()
