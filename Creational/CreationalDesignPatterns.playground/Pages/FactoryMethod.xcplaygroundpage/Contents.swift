@@ -1,7 +1,37 @@
-//: [Previous](@previous)
+protocol AmountSender {
+    func sendAmount(_ amount: String)
+}
 
-import Foundation
+// Concrete DebitCardSender class
+class DebitCardSender: AmountSender {
+    func sendAmount(_ amount: String) {
+        print("Sending amount: \(amount) through debit card")
+    }
+}
 
-var greeting = "Hello, playground"
+// Concrete UPISender class
+class UPISender: AmountSender {
+    func sendAmount(_ amount: String) {
+        print("Sending amount: \(amount) through upi")
+    }
+}
 
-//: [Next](@next)
+// AmountSenderFactory class implementing the Factory Method pattern
+class AmountSenderFactory {
+    enum SenderType {
+        case upi
+        case debitCard
+    }
+    
+    static func createMessageSender(type: SenderType) -> AmountSender {
+        switch type {
+        case .upi:
+            return UPISender()
+        case .debitCard:
+            return DebitCardSender()
+        }
+    }
+}
+
+let sender = AmountSenderFactory.createMessageSender(type: .upi)
+sender.sendAmount("200!")
