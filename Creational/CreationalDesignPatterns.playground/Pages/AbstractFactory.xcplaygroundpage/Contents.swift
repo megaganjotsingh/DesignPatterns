@@ -1,7 +1,14 @@
-//: [Previous](@previous)
+// Abstract factory
+protocol RestaurantFactory {
+  func createMainCourse() -> MainCourse
+  func createDessert() -> Dessert
+}
 
-import Foundation
+// Abstract products
+protocol MainCourse {
+  func display()
+}
 
-var greeting = "Hello, playground"
-
-//: [Next](@next)
+protocol Dessert {
+  func display()
+}
