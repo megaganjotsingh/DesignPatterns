@@ -23,7 +23,7 @@ class AmountSenderFactory {
         case debitCard
     }
     
-    static func createMessageSender(type: SenderType) -> AmountSender {
+    static func createAmountSender(type: SenderType) -> AmountSender {
         switch type {
         case .upi:
             return UPISender()
@@ -33,5 +33,5 @@ class AmountSenderFactory {
     }
 }
 
-let sender = AmountSenderFactory.createMessageSender(type: .upi)
+let sender = AmountSenderFactory.createAmountSender(type: .upi)
 sender.sendAmount("200!")
