@@ -1,6 +1,7 @@
 
 // Car Model
 
+
 struct Car {
     let name: String
     let model: String
@@ -9,14 +10,14 @@ struct Car {
 }
 
 enum CarBuilderError: Error {
-    case insufficientData
+    case insufficientData(forCarName: String)
 }
 
 extension CarBuilderError: LocalizedError {
     var errorDescription: String? {
         switch self {
-        case .insufficientData:
-            return "Please include all properties"
+        case .insufficientData(let carName):
+            return "Please include all properties for \(carName)"
         }
     }
 }
@@ -52,7 +53,7 @@ class CarBuilder {
               let model = model,
               let color = color,
               let numberOfDoors = numberOfDoors else {
-            throw CarBuilderError.insufficientData
+            throw CarBuilderError.insufficientData(forCarName: name ?? "Please provide name")
         }
         
         return Car(
@@ -70,7 +71,15 @@ class CarBuilder {
         .setModel("2023")
         .setColor("White")
         .build()
+     
+     let suzukiCarBuilder2 = try CarBuilder()
+        .setName("Dzire")
+        .setModel("2023")
+        .setColor("White")
+        .setNumberOfDoors(4)
+        .build()
 
  } catch let error {
      print(error.localizedDescription)
  }
+
