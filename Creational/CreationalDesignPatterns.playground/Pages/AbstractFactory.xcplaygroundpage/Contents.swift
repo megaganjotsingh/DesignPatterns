@@ -1,12 +1,14 @@
 import Foundation
 
 // Abstract factory
+
 protocol RestaurantFactory {
     func createMainCourse() -> MainCourse
     func createDessert() -> Dessert
 }
 
 // Abstract products
+
 protocol MainCourse {
     func display()
 }
@@ -75,6 +77,8 @@ class FoodDeliveryApp {
         dessert.display()
     }
 }
+
+// testing
 
 let italianApp = FoodDeliveryApp(factory: ItalianRestaurantFactory())
 let mexicanApp = FoodDeliveryApp(factory: MexicanRestaurantFactory())
